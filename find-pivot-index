@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/find-pivot-index
+function pivotIndex(nums: number[]): number {
+    let prefix:number[]=[];
+    prefix[0]=nums[0];
+    for(let i=1;i<nums.length;i++){
+        prefix[i]=prefix[i-1]+nums[i];
+    }
+    function getsum(l:number,r:number){
+        if(r<l)return 0;
+        if(l==0)return prefix[r];
+        return prefix[r]-prefix[l-1];
+    }
+    for(let i=0;i<nums.length;i++){
+        console.log(getsum(0,i-1)+" "+getsum(i+1,nums.length-1));
+        if(getsum(0,i-1)==getsum(i+1,nums.length-1)){
+            return i;
+        }
+    }
+    return -1;
+};
