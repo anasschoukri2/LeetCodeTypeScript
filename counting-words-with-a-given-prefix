@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/counting-words-with-a-given-prefix
+function prefixCount(words: string[], pref: string): number {
+    let ans=0;
+    for(let i=0;i<words.length;i++){
+        let y=false
+        for(let j=0;j<pref.length;j++){
+            if(pref[j]!=words[i][j]){
+                y=true;
+                break;
+            }
+        }
+        if(!y)ans++;
+    }
+    return ans;
+};
